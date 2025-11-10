@@ -7,7 +7,7 @@ namespace SigNEXDashboard.Models
     public enum ServerStatus
     {
         Online,
-        Degraded
+        Degraded,
         Offline
     }
 
@@ -41,7 +41,7 @@ namespace SigNEXDashboard.Models
                     _ => "bg-gray-400"
 
                 }
-            }
+            };
         }
     }
 

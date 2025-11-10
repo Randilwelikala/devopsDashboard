@@ -12,3 +12,4 @@ D:\projects\devopsDashboard\obj\Debug\net8.0\refint\devopsDashboard.dll
 D:\projects\devopsDashboard\obj\Debug\net8.0\devopsDashboard.pdb
 D:\projects\devopsDashboard\obj\Debug\net8.0\devopsDashboard.genruntimeconfig.cache
 D:\projects\devopsDashboard\obj\Debug\net8.0\ref\devopsDashboard.dll
+D:\projects\devopsDashboard\obj\Debug\net8.0\devopsDashboard.sourcelink.json

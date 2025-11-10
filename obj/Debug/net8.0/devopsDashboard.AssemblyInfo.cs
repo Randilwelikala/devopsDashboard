@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("devopsDashboard")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b3641ed7ae434d392363b0a3e1c98e7855c36e4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+87a694fbf25c83b0abd684aca8a36ce81fa755cb")]
 [assembly: System.Reflection.AssemblyProductAttribute("devopsDashboard")]
 [assembly: System.Reflection.AssemblyTitleAttribute("devopsDashboard")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

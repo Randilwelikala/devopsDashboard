@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
-using SignNEXDashboard.Models;
+using SigNEXDashboard.Models;
+using System.Linq;
 
 namespace SigNEXDashboard.Data
 {
@@ -19,7 +20,7 @@ namespace SigNEXDashboard.Data
             var data = new DashboardData
             {
                 generatedTime = DateTime.UtcNow,
-                clientInstances  = new List<clientInstance>()
+                ClientInstances  = new List<ClientInstance>()
 
             };
 
@@ -57,7 +58,7 @@ namespace SigNEXDashboard.Data
 
             };
 
-            if (status == ServerStaus.offline)
+            if (status == ServerStatus.Offline)
             {
                 instance.cpuUsagePercent = 0.0;
                 instance.loadAverage1m = 0.0;
@@ -68,7 +69,7 @@ namespace SigNEXDashboard.Data
                 instance.documentsSignedLastHour = 0;
             }
 
-            else if (status == serverStatus.Degraded)
+            else if (status == ServerStatus.Degraded)
             {
                 instance.cpuUsagePercent = rnd.Next(850, 980) / 10.0;
                 instance.loadAverage1m = rnd.Next(80, 150) / 10.0;
@@ -78,10 +79,10 @@ namespace SigNEXDashboard.Data
                 instance.ErrorRatePercent = rnd.Next(5, 20) / 10.0;
                 instance.DocumentsSignedLastHour = rnd.Next(100, 500);
 
-                instance.RecentAnomalies.Add(GenerateAnomoly(AnomalyType.HighLatency, clientName, rnd));
+                instance.RecentAnomalies.Add(GenerateAnomaly(AnomalyType.HighLatency, clientName, rnd));
                 if (rnd.Next(10) < 8)
                 {
-                    instance.RecentAnomalies.Add(GEnerateAnomaly(AnomalyType.Error, clientaName, rnd));
+                    instance.RecentAnomalies.Add(GenerateAnomaly(AnomalyType.Error, clientName, rnd));
 
                 }
 
@@ -114,7 +115,7 @@ namespace SigNEXDashboard.Data
             string description = type switch
             {
                 AnomalyType.Error => $"[{clientName}] Critical database connection failure in signing service. Restart required.",
-                AnomalyType.warning => $"[{clientName}]Disk space for transaction logs below 20% threshold.",
+                AnomalyType.Warning => $"[{clientName}]Disk space for transaction logs below 20% threshold.",
                 AnomalyType.UnusualTraffic => $"[{clientName}] Request volume spiked 400% in the last 10 minutes. Possible DDoS or large integration batch.",
                 AnomalyType.HighLatency => $"[{clientName}] API latency exceeded 1200ms for 5 reporting cycles. Check resource saturation.",
                 _ => "Unknown anomaly detected."
@@ -124,9 +125,9 @@ namespace SigNEXDashboard.Data
             {
                 Id = Guid.NewGuid().ToString().Substring(0, 8),
                 Type = type,
-                description = description,
-                TimestampAttribute = DateTime.UtcNow.AddMinutes(-rnd.Next(1, 60)),
-                clientNames = clientName
+                Description = description,
+                Timestamp = DateTime.UtcNow.AddMinutes(-rnd.Next(1, 60)),
+                ClientName = clientName
             };
         }
 

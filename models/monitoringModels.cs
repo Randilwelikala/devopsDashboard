@@ -27,20 +27,20 @@ namespace SigNEXDashboard.Models
         public DateTime TImestamp { get; set; }
         public string clientName { get; set; }
 
-        [jsonIgnore]
+        [JsonIgnore]
         public string BadgeClass
         {
             get => Type switch
             {
-                get => Type switch
-                {
-                    AnomalyType.Error => "bg-red-500",
-                    AnomalyType.Warning => "bg-yellow-500",
-                    AnomalyType.HighLatency => "bg-orange-500",
-                    AnomalyType.UnusualTraffic => "bg-blue-500",
-                    _ => "bg-gray-400"
+                
+                
+                AnomalyType.Error => "bg-red-500",
+                AnomalyType.Warning => "bg-yellow-500",
+                AnomalyType.HighLatency => "bg-orange-500",
+                AnomalyType.UnusualTraffic => "bg-blue-500",
+                _ => "bg-gray-400"
 
-                }
+                
             };
         }
     }

@@ -123,7 +123,7 @@ namespace SigNEXDashboard.Data
             return new AnomalyEvent
             {
                 Id = Guid.NewGuid().ToString().Substring(0, 8),
-                Type = Type,
+                Type = type,
                 description = description,
                 TimestampAttribute = DateTime.UtcNow.AddMinutes(-rnd.Next(1, 60)),
                 clientNames = clientName

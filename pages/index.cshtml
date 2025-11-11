@@ -1,15 +1,19 @@
-@page @model IndexModel @{ ViewData["Title"] = "SigNEX DevOps Dashboard"; Layout = null; // Use full HTML structure }
-SigNEX Client Monitoring Dashboard
-Select a client below to view detailed performance metrics.
+@page
+@model SigNEXDashboard.Pages.IndexModel
+@{
+    ViewData["Title"] = "SigNEX DevOps Dashboard";
+    Layout = null;
+}
 
-Data simulated as of: @Model.FullData.GeneratedTime.ToLocalTime().ToString("g")
+<h1>SigNEX Client Monitoring Dashboard</h1>
+<p>Select a client below to view detailed performance metrics.</p>
 
-Active Clients (@Model.ClientInstances.Count)
-@foreach (var instance in Model.ClientInstances) { // Use a button for accessibility and data attributes to hold the client ID 
-@instance.ClientName
+<p>Data simulated as of: @Model.FullData.GeneratedTime.ToLocalTime().ToString("g")</p>
 
-@instance.Status.ToString()
-@instance.Region
- }
-Client Detail View
-@foreach (var instance in Model.ClientInstances) { // Render all detail cards but hide them by default (except the first one) }
+<h2>Active Clients (@Model.ClientInstances.Count)</h2>
+@foreach (var instance in Model.ClientInstances)
+{
+    <div>
+        <strong>@instance.ClientName</strong> – @instance.Status – @instance.Region
+    </div>
+}

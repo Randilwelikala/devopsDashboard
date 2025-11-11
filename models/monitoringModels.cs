@@ -24,8 +24,8 @@ namespace SigNEXDashboard.Models
         public string Id { get; set; }
         public AnomalyType Type { get; set; }
         public string Description { get; set; }
-        public DateTime TImestamp { get; set; }
-        public string clientName { get; set; }
+        public DateTime Timestamp { get; set; }
+        public string ClientName { get; set; }
 
         [JsonIgnore]
         public string BadgeClass

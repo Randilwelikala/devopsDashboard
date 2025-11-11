@@ -13,3 +13,6 @@ D:\projects\devopsDashboard\obj\Debug\net8.0\devopsDashboard.pdb
 D:\projects\devopsDashboard\obj\Debug\net8.0\devopsDashboard.genruntimeconfig.cache
 D:\projects\devopsDashboard\obj\Debug\net8.0\ref\devopsDashboard.dll
 D:\projects\devopsDashboard\obj\Debug\net8.0\devopsDashboard.sourcelink.json
+D:\projects\devopsDashboard\obj\Debug\net8.0\devopsDashboard.MvcApplicationPartsAssemblyInfo.cache
+D:\projects\devopsDashboard\obj\Debug\net8.0\devopsDashboard.RazorAssemblyInfo.cache
+D:\projects\devopsDashboard\obj\Debug\net8.0\devopsDashboard.RazorAssemblyInfo.cs

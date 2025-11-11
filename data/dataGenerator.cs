@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Data.Common;
 using SigNEXDashboard.Models;
 using System.Linq;
 
@@ -11,7 +9,7 @@ namespace SigNEXDashboard.Data
     {
         private static readonly Random rnd = new Random();
         private static readonly string[] clientNames = { "SLIC", "DFCC", "CSA" };
-        private static readonly string[] regions = { "SLIC head Office", "DFCC head office", "CSA head office" };
+        private static readonly string[] regions = { "SLIC Head Office", "DFCC Head Office", "CSA Head Office" };
 
         public static DashboardData Generate(int numberOfClients)
         {
@@ -19,9 +17,8 @@ namespace SigNEXDashboard.Data
 
             var data = new DashboardData
             {
-                generatedTime = DateTime.UtcNow,
-                ClientInstances  = new List<ClientInstance>()
-
+                GeneratedTime = DateTime.UtcNow,
+                ClientInstances = new List<ClientInstance>()
             };
 
             for (int i = 0; i < numberOfClients; i++)
@@ -35,60 +32,57 @@ namespace SigNEXDashboard.Data
                 if (i == 2) status = ServerStatus.Offline;
 
                 var instance = CreateClientInstance(clientId, clientName, region, status);
-                data.ClientInstance.Add(instance);
-            }
-            return data;
+                data.ClientInstances.Add(instance);
 
+            }
+
+            return data;
         }
 
-        private static ClientInstance CreateClientInsatnce(string clientId, string clientName, string region, string status)
+        private static ClientInstance CreateClientInstance(string clientId, string clientName, string region, ServerStatus status)
+
         {
             double totalRam = rnd.Next(16, 64);
             double totalStorage = rnd.Next(500, 1000);
 
             var instance = new ClientInstance
             {
-                clientId = clientId,
-                clientName = clientName,
-                region = region,
-                status = status,
-                totalRamGb = totalRam,
-                totalStorageGb = totalStorage,
-                lastCheckTime = DateTime.UtcNow.AddMinutes(-rnd.Next(1, 5))
-
+                ClientId = clientId,
+                ClientName = clientName,
+                Region = region,
+                Status = status,
+                TotalRamGb = totalRam,
+                TotalStorageGb = totalStorage,
+                LastCheckTime = DateTime.UtcNow.AddMinutes(-rnd.Next(1, 5))
             };
 
             if (status == ServerStatus.Offline)
             {
-                instance.cpuUsagePercent = 0.0;
-                instance.loadAverage1m = 0.0;
-                instance.ramUsedGb = 0.0;
-                instance.storageUsedGb = instance.TotalStorageGb;
-                instance.requestLatencyMs = 0;
-                instance.errorRatePercent = 100.0;
-                instance.documentsSignedLastHour = 0;
+                instance.CpuUsagePercent = 0.0;
+                instance.LoadAverage1m = 0.0;
+                instance.RamUsedGb = 0.0;
+                instance.StorageUsedGb = instance.TotalStorageGb;
+                instance.RequestLatencyMs = 0;
+                instance.ErrorRatePercent = 100.0;
+                instance.DocumentsSignedLastHour = 0;
             }
-
             else if (status == ServerStatus.Degraded)
             {
-                instance.cpuUsagePercent = rnd.Next(850, 980) / 10.0;
-                instance.loadAverage1m = rnd.Next(80, 150) / 10.0;
-                instance.ramUsageGb = rnd.NextDouble() * (totalRam * 0.95 - totalRam * 0.8) + (totalRam * 0.8);
-                instance.storageUsedGb = totalStorage * (rnd.Next(800, 950) / 1000.0);
+                instance.CpuUsagePercent = rnd.Next(850, 980) / 10.0;
+                instance.LoadAverage1m = rnd.Next(80, 150) / 10.0;
+                instance.RamUsedGb = rnd.NextDouble() * (totalRam * 0.95 - totalRam * 0.8) + (totalRam * 0.8);
+                instance.StorageUsedGb = totalStorage * (rnd.Next(800, 950) / 1000.0);
                 instance.RequestLatencyMs = rnd.Next(600, 1800);
                 instance.ErrorRatePercent = rnd.Next(5, 20) / 10.0;
                 instance.DocumentsSignedLastHour = rnd.Next(100, 500);
 
-                instance.RecentAnomalies.Add(GenerateAnomaly(AnomalyType.HighLatency, clientName, rnd));
+                instance.RecentAnomalies.Add(GenerateAnomaly(AnomalyType.HighLatency, clientName));
                 if (rnd.Next(10) < 8)
                 {
-                    instance.RecentAnomalies.Add(GenerateAnomaly(AnomalyType.Error, clientName, rnd));
-
+                    instance.RecentAnomalies.Add(GenerateAnomaly(AnomalyType.Error, clientName));
                 }
-
             }
-
-            else
+            else // Online
             {
                 instance.CpuUsagePercent = rnd.Next(50, 350) / 10.0;
                 instance.LoadAverage1m = rnd.Next(5, 40) / 10.0;
@@ -100,22 +94,19 @@ namespace SigNEXDashboard.Data
 
                 if (rnd.Next(100) < 5)
                 {
-                    instance.RecentAnomalies.Add(GenerateAnomaly(AnomalyType.Warning, clientName, rnd));
-
+                    instance.RecentAnomalies.Add(GenerateAnomaly(AnomalyType.Warning, clientName));
                 }
-
-
             }
+
             return instance;
-
-
         }
-        private static AnomalyEvent GenerateAnomaly(AnomalyType type, string clientName,  Random rnd)
+
+        private static AnomalyEvent GenerateAnomaly(AnomalyType type, string clientName)
         {
             string description = type switch
             {
                 AnomalyType.Error => $"[{clientName}] Critical database connection failure in signing service. Restart required.",
-                AnomalyType.Warning => $"[{clientName}]Disk space for transaction logs below 20% threshold.",
+                AnomalyType.Warning => $"[{clientName}] Disk space for transaction logs below 20% threshold.",
                 AnomalyType.UnusualTraffic => $"[{clientName}] Request volume spiked 400% in the last 10 minutes. Possible DDoS or large integration batch.",
                 AnomalyType.HighLatency => $"[{clientName}] API latency exceeded 1200ms for 5 reporting cycles. Check resource saturation.",
                 _ => "Unknown anomaly detected."
@@ -123,15 +114,12 @@ namespace SigNEXDashboard.Data
 
             return new AnomalyEvent
             {
-                Id = Guid.NewGuid().ToString().Substring(0, 8),
+                Id = Guid.NewGuid().ToString("N")[..8],
                 Type = type,
                 Description = description,
                 Timestamp = DateTime.UtcNow.AddMinutes(-rnd.Next(1, 60)),
                 ClientName = clientName
             };
         }
-
     }
-    
 }
-

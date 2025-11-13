@@ -12,7 +12,7 @@
         <th>Client</th>
         <th>Status</th>
         <th>CPU %</th>
-        <th>RAM Used / Total</th>
+        <th>RAM Used percentage</th>
         <th>Storage Used / Total</th>
         <th>Request Latency (ms)</th>
         <th>Error Rate (%)</th>
@@ -24,7 +24,7 @@
         <td>@c.ClientName</td>
         <td>@c.Status</td>
         <td>@c.CpuUsagePercent</td>
-        <td>@c.RamUsedGb / @c.TotalRamGb</td>
+        <td>@c.RamUsedGb / @c.TotalRamGb * 100</td>
         <td>@c.StorageUsedGb / @c.TotalStorageGb</td>
         <td>@c.RequestLatencyMs</td>
         <td>@c.ErrorRatePercent</td>

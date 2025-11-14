@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace serverDashboard.Models
+namespace serverDashboard.models
 {
     public class DashboardData
     {

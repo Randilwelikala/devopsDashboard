@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
-using serverDashboard.Models;
+using serverDashboard.models;
 using serverDashboard.Data;
 
 namespace serverDashboard.Pages

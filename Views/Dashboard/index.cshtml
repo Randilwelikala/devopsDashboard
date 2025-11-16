@@ -1,0 +1,37 @@
+@model List<serverDashboard.Models.Client>
+
+@{
+    ViewData["Title"] = "DevOps Dashboard";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@foreach (var client in Model)
+{
+    <h2>@client.ClientName</h2>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Server</th>
+            <th>Status</th>
+            <th>CPU %</th>
+            <th>RAM Used</th>
+            <th>Storage</th>
+            <th>Latency (ms)</th>
+            <th>Error Rate (%)</th>
+            <th>Docs Signed</th>
+        </tr>
+        @foreach (var s in client.Servers)
+        {
+            <tr>
+                <td>@s.ServerName</td>
+                <td>@s.Status</td>
+                <td>@s.CpuUsagePercent</td>
+                <td>@s.RamUsedGb / @s.TotalRamGb</td>
+                <td>@s.StorageUsedGb / @s.TotalStorageGb</td>
+                <td>@s.RequestLatencyMs</td>
+                <td>@s.ErrorRatePercent</td>
+                <td>@s.DocumentsSignedLastHour</td>
+            </tr>
+        }
+    </table>
+}

@@ -1,0 +1,100 @@
+{
+  "Clients": [
+    {
+      "ClientId": "client1",
+      "ClientName": "Client A",
+      "Servers": [
+        {
+          "ServerId": "srv-a1",
+          "ServerName": "Server A1",
+          "Status": "Online",
+          "CpuUsagePercent": 45.5,
+          "TotalRamGb": 16,
+          "RamUsedGb": 8.2,
+          "TotalStorageGb": 500,
+          "StorageUsedGb": 200,
+          "RequestLatencyMs": 120,
+          "ErrorRatePercent": 0.5,
+          "DocumentsSignedLastHour": 25
+        },
+        {
+          "ServerId": "srv-a2",
+          "ServerName": "Server A2",
+          "Status": "Warning",
+          "CpuUsagePercent": 78.3,
+          "TotalRamGb": 32,
+          "RamUsedGb": 25.1,
+          "TotalStorageGb": 1000,
+          "StorageUsedGb": 800,
+          "RequestLatencyMs": 350,
+          "ErrorRatePercent": 3.2,
+          "DocumentsSignedLastHour": 12
+        }
+      ]
+    },
+    {
+      "ClientId": "client2",
+      "ClientName": "Client B",
+      "Servers": [
+        {
+          "ServerId": "srv-b1",
+          "ServerName": "Server B1",
+          "Status": "Online",
+          "CpuUsagePercent": 32.7,
+          "TotalRamGb": 8,
+          "RamUsedGb": 3.5,
+          "TotalStorageGb": 250,
+          "StorageUsedGb": 100,
+          "RequestLatencyMs": 95,
+          "ErrorRatePercent": 0.1,
+          "DocumentsSignedLastHour": 18
+        },
+        {
+          "ServerId": "srv-b2",
+          "ServerName": "Server B2",
+          "Status": "HighLatency",
+          "CpuUsagePercent": 90.1,
+          "TotalRamGb": 16,
+          "RamUsedGb": 14,
+          "TotalStorageGb": 500,
+          "StorageUsedGb": 450,
+          "RequestLatencyMs": 550,
+          "ErrorRatePercent": 5.6,
+          "DocumentsSignedLastHour": 5
+        }
+      ]
+    },
+    {
+      "ClientId": "client3",
+      "ClientName": "Client C",
+      "Servers": [
+        {
+          "ServerId": "srv-c1",
+          "ServerName": "Server C1",
+          "Status": "UnusualTraffic",
+          "CpuUsagePercent": 60.2,
+          "TotalRamGb": 32,
+          "RamUsedGb": 20.4,
+          "TotalStorageGb": 1000,
+          "StorageUsedGb": 600,
+          "RequestLatencyMs": 200,
+          "ErrorRatePercent": 1.0,
+          "DocumentsSignedLastHour": 30
+        },
+        {
+          "ServerId": "srv-c2",
+          "ServerName": "Server C2",
+          "Status": "Error",
+          "CpuUsagePercent": 95.0,
+          "TotalRamGb": 64,
+          "RamUsedGb": 60,
+          "TotalStorageGb": 2000,
+          "StorageUsedGb": 1800,
+          "RequestLatencyMs": 800,
+          "ErrorRatePercent": 8.5,
+          "DocumentsSignedLastHour": 2
+        }
+      ]
+    }
+  ]
+}

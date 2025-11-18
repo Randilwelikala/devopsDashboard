@@ -2,6 +2,7 @@ namespace serverDashboard.Models
 {
     public class Server
     {
+        public string ServerId { get; set; }
         public string ServerName { get; set; }
         public string Status { get; set; }
         public double CpuUsagePercent { get; set; }

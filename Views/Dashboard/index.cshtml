@@ -1,20 +1,17 @@
 @model List<serverDashboard.Models.Client>
 
-<h1>DevOps Dashboard</h1>
+<h1 class="title">DevOps Dashboard</h1>
 
-<!-- Buttons to select client -->
-<div>
+<div class="client-buttons">
     @for (int i = 0; i < Model.Count; i++)
     {
-        <button type="button" onclick="showClient(@i)">@Model[i].ClientName</button>
+        <button class="client-btn" onclick="showClient(@i)">@Model[i].ClientName</button>
     }
 </div>
 
-<hr />
-
-<!-- Table for server details -->
 <h2 id="clientName">@Model[0].ClientName</h2>
-<table border="1" cellpadding="5" id="serverTable">
+
+<table id="serverTable">
     <thead>
         <tr>
             <th>Server</th>
@@ -45,7 +42,6 @@
 </table>
 
 <script>
-    // Convert server-side model to JavaScript
     const clients = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model));
 
     function showClient(index) {
@@ -53,7 +49,7 @@
         document.getElementById("clientName").innerText = client.ClientName;
 
         const tbody = document.getElementById("serverTable").querySelector("tbody");
-        tbody.innerHTML = ""; // clear existing rows
+        tbody.innerHTML = "";
 
         client.Servers.forEach(s => {
             const row = document.createElement("tr");
